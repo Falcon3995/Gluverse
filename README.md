@@ -25,7 +25,7 @@ Built for people with **Type 1 Diabetes (T1D)** — GluVerse predicts, personali
 
 ## 📱 User Flow Overview
 
-![GluVerse App Flow](./assets/app-flow.svg)
+![GluVerse App Flow](./assets/app-flow.png)
 <sub>_User Journey: From meal capture → AI prediction → insulin recommendation → reflection feedback._</sub>
 
 ---
