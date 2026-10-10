@@ -1,0 +1,9 @@
+# GluVerse Release Audit
+
+- Backend: 105 tests passed, including invalid and out-of-range timestamp freshness handling, blank shop status preservation, blank community content validation, local-only demo reset, overflow-safe, future-bounded, and UTC-normalized health timestamps, bounded request bodies, non-cacheable health API responses, production HSTS, spoof-resistant authentication rate limiting, blank coach-message validation, deterministic rate-limit test isolation, atomic demo reset rollback, race-safe default settings initialization, readiness failure connection cleanup, read failure connection cleanup, write failure rollback and connection cleanup, atomic account bootstrap, registration uniqueness-race conflict handling, authentication credential-type validation, atomic settings replacement, partial settings section preservation, partial alert-rule value preservation, partial profile settings preservation, falsey settings-section validation, falsey timestamp validation, shop request status and field preservation, and partial meal edit field preservation; frontend: 15 suites / 24 tests passed, including accurate external-AI privacy disclosure and disabled blank coach submission; production build passed.
+- Backend and test sources previously compiled successfully with Python `compileall`; the latest rerun was blocked by environment bytecode-cache contention and is not treated as passed.
+- Production Compose configuration resolves required variables.
+- Docker image build and service startup are deferred by user instruction.
+- Browser smoke validation is blocked pending Codex reload of `.mcp.json`, local socket access, and resolution of the existing virtualenv Flask-import hang; the configured MCP package fetches successfully.
+- Local launcher now avoids backend port collisions and propagates the selected backend URL to the frontend.
+- External NVIDIA, CGM, and notification credentials require real deployment configuration.

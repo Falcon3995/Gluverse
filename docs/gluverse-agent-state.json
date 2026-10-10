@@ -1,0 +1,53 @@
+{
+  "active_section": "Health safety, privacy, accessibility, and legal boundaries",
+  "active_story": "Browser smoke validation: runtime tooling readiness",
+  "acceptance_criteria": [
+    "Browser smoke tooling readiness is accurately documented",
+    "Existing backend and frontend validation evidence remains current",
+    "No clinical treatment guidance is introduced"
+  ],
+  "completed_sections": [],
+  "blocked_stories": [
+    "Browser smoke validation — Chrome DevTools MCP configuration is present and package fetch succeeds, but Codex has not reloaded it, local socket access is restricted, and the existing backend virtualenv hangs while importing Flask",
+    "Autonomous overlap lock — .codex is not writable in this workspace"
+  ],
+  "last_validated_commit": null,
+  "commands_executed": [
+    "npm test -- --watchAll=false --runTestsByPath src/components/AICoach.test.js",
+    "backend/.venv/bin/python -m unittest tests.test_backend_api.BackendApiSmokeTests.test_auth_rate_limit_applies_in_production",
+    "backend/.venv/bin/python -m unittest tests.test_backend_api.BackendApiSmokeTests.test_production_responses_require_https_for_future_visits",
+    "backend/.venv/bin/python -m unittest tests.test_backend_api.BackendApiSmokeTests.test_health_api_responses_are_not_cached",
+    "backend/.venv/bin/python -m unittest tests.test_backend_api.BackendApiSmokeTests.test_oversized_json_is_rejected_before_validation",
+    "backend/.venv/bin/python -m unittest tests.test_backend_api.BackendApiSmokeTests.test_health_records_reject_timezone_naive_timestamps",
+    "backend/.venv/bin/python -m unittest tests.test_backend_api.BackendApiSmokeTests.test_health_timestamps_are_normalized_to_utc",
+    "backend/.venv/bin/python -m unittest tests.test_backend_api.BackendApiSmokeTests.test_health_records_reject_far_future_timestamps",
+    "backend/.venv/bin/python -m unittest tests.test_backend_api.BackendApiSmokeTests.test_health_records_reject_timestamps_that_overflow_utc",
+    "backend/.venv/bin/python -m unittest tests.test_backend_api.BackendApiSmokeTests.test_demo_reset_rejects_remote_callers",
+    "backend/.venv/bin/python -m unittest tests.test_backend_api.BackendApiSmokeTests.test_community_post_rejects_blank_content",
+    "backend/.venv/bin/python -B -m unittest tests.test_backend_api.BackendApiSmokeTests.test_shop_request_blank_status_preserves_existing_or_default_status",
+    "backend/.venv/bin/python -m unittest tests.test_backend_api.BackendApiSmokeTests.test_coach_rejects_blank_message_without_model_call",
+    "backend/.venv/bin/python -m unittest tests.test_backend_api.BackendApiSmokeTests.test_demo_reset_rolls_back_and_preserves_data_when_reseed_fails",
+    "backend/.venv/bin/python -m unittest tests.test_backend_api.BackendApiSmokeTests.test_default_settings_rows_tolerate_initialization_race",
+    "backend/.venv/bin/python -m unittest tests.test_backend_api.BackendApiSmokeTests.test_readiness_query_failure_closes_connection",
+    "backend/.venv/bin/python -m unittest tests.test_backend_api.BackendApiSmokeTests.test_fetch_helpers_close_on_failure",
+    "backend/.venv/bin/python -m unittest tests.test_backend_api.BackendApiSmokeTests.test_execute_rolls_back_and_closes_on_failure",
+    "backend/.venv/bin/python -m unittest tests.test_backend_api.BackendApiSmokeTests.test_profile_partial_update_preserves_settings_json",
+    "backend/.venv/bin/python -m unittest tests.test_backend_api.BackendApiSmokeTests.test_alert_rules_partial_update_preserves_omitted_values",
+    "backend/.venv/bin/python -m unittest tests.test_backend_api.BackendApiSmokeTests.test_settings_partial_update_preserves_omitted_sections",
+    "backend/.venv/bin/python -m unittest tests.test_backend_api.BackendApiSmokeTests.test_meal_create_edit_delete",
+    "backend/.venv/bin/python -m unittest tests.test_backend_api.BackendApiSmokeTests.test_shop_request_save_without_status_preserves_existing_status",
+    "backend/.venv/bin/python -m unittest discover -s tests -p 'test_*.py'",
+    "backend/.venv/bin/python -B -m compileall -q backend tests (blocked by environment bytecode-cache contention; not treated as passed)",
+    "python3 -m json.tool docs/gluverse-agent-state.json",
+    "npm test -- --watchAll=false",
+    "npm run build"
+  ],
+  "coverage_results": null,
+  "latest_backend_run": "105 tests passed, including shared out-of-range timestamp stale-check handling",
+  "next_action": "Run browser smoke tests after Codex reloads .mcp.json, local socket access is available, and the backend virtualenv Flask import is healthy",
+  "run_timestamp": "2026-09-09T17:00:00-0400",
+  "test_results": {
+    "backend": "105 passed, including invalid-timestamp freshness handling, blank shop status preservation, blank community content validation, local-only demo reset, overflow-safe, future-bounded, and UTC-normalized health timestamps, bounded request bodies, non-cacheable health API responses, production HSTS, spoof-resistant authentication rate limiting, blank coach-message validation, deterministic rate-limit test isolation, atomic demo reset rollback, race-safe default settings initialization, readiness failure connection cleanup, read failure connection cleanup, write failure rollback and connection cleanup, atomic account bootstrap, registration uniqueness-race conflict handling, authentication credential-type validation, atomic settings replacement, partial settings section preservation, partial alert-rule value preservation, partial profile settings preservation, falsey settings-section validation, falsey timestamp validation, shop request status and field preservation, partial meal edit field preservation, insulin-to-meal referential integrity, atomic emergency-contact replacement, strict numeric health data, finite numeric health data, shared timestamp, community content, report and moderation referential integrity, glucose ID/source, duplicate glucose IDs, meal ID, duplicate meal IDs, insulin ID, duplicate insulin IDs, achievement referential integrity, coach message, settings flags, alert-rule validation, contact-ID validation, and required-field validation",
+    "frontend": "15 suites / 24 tests passed, including accurate external-AI privacy disclosure and disabled blank coach submission; production build passed"
+  }
+}
